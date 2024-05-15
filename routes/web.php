@@ -10,6 +10,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::middleware('auth')->group(function(){
-    Route::get('users',[UserController::class, 'index'])->name('users.index');
+    Route::get('users',[UserController::class, 'index'])->name('users.index')->middleware('admin');
 });
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
