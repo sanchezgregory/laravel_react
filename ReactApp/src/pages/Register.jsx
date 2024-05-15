@@ -1,5 +1,6 @@
 import { Formik, validateYupSchema } from 'formik'
 import * as Yup from 'yup'
+import {Link} from 'react-router-dom'
 import InputLabel from '../components/input/InputLabel.jsx'
 import ButtonSubmit from '../components/button/ButtonSubmit.jsx'
 import { Api } from '../service/Api.ts'
@@ -32,7 +33,7 @@ const Register = () => {
     
         console.log(values)
         Api.post('/auth/register/', values).then((response) => {
-            console.log(response.data)
+            console.log(response)
         });
     }
     return (
@@ -54,6 +55,14 @@ const Register = () => {
                                     <InputLabel label="password" type="password" name="password" placeholder="Password here" error={errors.password} onChange={handleChange} value={values.password}/>
                                     <InputLabel label="Confirm password" type="password" name="password_confirmation" placeholder="confirm password" error={errors.password_confirmation} onChange={handleChange} value={values.password_confirmation}/>
                                     <ButtonSubmit type="submit" name="Registrar"/>
+                                    
+                                    <p className='text-sm font-light text-gray-500 dark:text-gray-400'>
+                                        Already have an account?&nbsp;
+                                        <Link to="/login" className="text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-500">
+                                             | Login
+                                        </Link>
+                                    </p>
+
                                 </form>
                             )}
                         </Formik>
